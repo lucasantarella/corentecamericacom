@@ -31,6 +31,11 @@ html(lang='en')
         link(href='bower_components/font-awesome/css/font-awesome.min.css', rel='stylesheet')
         link(href='css/materialize.min.css', type='text/css', rel='stylesheet', media='screen,projection')
         link(href='css/style.css', type='text/css', rel='stylesheet', media='screen,projection')
+        link(rel='stylesheet', type='text/css', media='screen', href='http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.css')
+        style(type='text/css').
+            a.fancybox img {
+                border: none;
+            }
     body
         nav.white(role='navigation')
             .nav-wrapper.container
@@ -100,7 +105,7 @@ html(lang='en')
                                 | heads
                                 | come in both metal and ceramic types.
                         .col.s4
-                            img.modal-product-image(src='img/bencoxhips.png')
+                            img.fancybox.modal-product-image(src='img/bencoxhips.png')
                 .modal-footer
                     a.modal-action.modal-close.waves-effect.waves-red.btn-flat(href='#!') Close
                     a.modal-action.waves-effect.waves-red.btn-flat(href='http://corentec.com/medical_pro.html#MP_Bencox1') Read More
@@ -144,7 +149,7 @@ html(lang='en')
                                 | liner boasts a full peripheral
                                 | capture snap-fit locking mechanism.
                         .col.s4
-                            img.modal-product-image(src='img/lospaknee.png')
+                            img.fancybox.modal-product-image(src='img/lospaknee.png')
                 .modal-footer
                     a.modal-action.modal-close.waves-effect.waves-red.btn-flat(href='#!') Close
                     a.modal-action.waves-effect.waves-red.btn-flat(href='http://corentec.com/medical_pro.html#MP_Lospa') Read More
@@ -175,7 +180,7 @@ html(lang='en')
                                 | after undergoing procedures with high-profile
                                 | fixation systems.
                         .col.s4
-                            img.modal-product-image(src='img/lospaispic.png')
+                            img.fancybox.modal-product-image(src='img/lospaispic.png')
                 .modal-footer
                     a.modal-action.modal-close.waves-effect.waves-red.btn-flat(href='#!') Close
                     a.modal-action.waves-effect.waves-red.btn-flat(href='http://corentec.com/medical_pro.html#MP_Spinal') Read More
@@ -324,6 +329,28 @@ html(lang='en')
         script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js')
         script(src='js/materialize.min.js')
         script(src='js/init.js')
+        script(type='text/javascript', src='http://code.jquery.com/jquery-1.11.0.min.js')
+        script(type='text/javascript', src='http://code.jquery.com/jquery-migrate-1.2.1.min.js')
+        script(type='text/javascript', src='http://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.pack.min.js')
+        script(type='text/javascript').
+            $(function ($) {
+                var addToAll = false;
+                var gallery = false;
+                var titlePosition = 'inside';
+                $(addToAll ? 'img' : 'img.fancybox').each(function () {
+                    var $this = $(this);
+                    var title = $this.attr('title');
+                    var src = $this.attr('data-big') || $this.attr('src');
+                    var a = $('<a href="#" class="fancybox"></a>').attr('href', src).attr('title', title);
+                    $this.wrap(a);
+                });
+                if (gallery)
+                    $('a.fancybox').attr('rel', 'fancyboxgallery');
+                $('a.fancybox').fancybox({
+                    titlePosition: titlePosition
+                });
+            });
+            $.noConflict();
         script(type='application/javascript').
             $(document)
                     .ready(function () {
