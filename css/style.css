@@ -62,4 +62,11 @@ p {
     box-shadow: 0 10px 20px -7px #e0e0e0;
     transform: translate(0px, -5px); }
 
+#modals .modal-content .inline-right {
+  float: right;
+  max-width: 30%; }
+#modals .modal-content .inline-left {
+  float: left;
+  max-width: 30%; }
+
 /*# sourceMappingURL=style.css.map */
