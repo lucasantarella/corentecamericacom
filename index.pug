@@ -248,18 +248,18 @@ html(lang='en')
                                 | Ask us about our products,
                                 | business information, or job opportunities.
                         .row.left-align
-                            form.col.l8.offset-l2.m8.offset-m2.s12
+                            form#contact-form.col.l8.offset-l2.m8.offset-m2.s12.right-alert
                                 .row
                                     .input-field.col.s12
                                         input#contact-name.validate(type='text')
                                         label(for='contact-name') Name
                                 .row
                                     .input-field.col.s12
-                                        input#email.validate(type='email')
-                                        label(for='email') Email
+                                        input#contact-email.validate(type='email')
+                                        label(for='contact-email') Email
                                 .row
                                     .input-field.col.s12
-                                        textarea#contact-message.materialize-textarea(type='text')
+                                        textarea#contact-message.validate.materialize-textarea(type='text')
                                         label(for='contact-message') Message
                                 .row
                                     .col.s12.right-align
@@ -322,6 +322,7 @@ html(lang='en')
                         | Santarella
         // Scripts
         script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js')
         script(src='js/materialize.min.js')
         script(src='js/init.js')
         script(type='application/javascript').
@@ -334,6 +335,44 @@ html(lang='en')
                         // Side nav config
                         $('.button-collapse').sideNav({});
                         $('.collapsible').collapsible();
+                        $('#contact-form').validate({
+                            rules: {
+                                'contact-name': {
+                                    required: true
+                                },
+                                'contact-email': {
+                                    required: true,
+                                    email: true
+                                },
+                                'contact-message': {
+                                    required: true,
+                                    minlength: 15
+                                }
+                            },
+                            messages: {
+                                'contact-name': {
+                                    required: "Name is required!"
+                                },
+                                'contact-email': {
+                                    required: "Email is required!",
+                                    email: "Invalid email!"
+                                },
+                                'contact-message': {
+                                    required: "Message is required!",
+                                    minlength: "Message must be longer than 15 characters!"
+                                }
+                            },
+                            errorElement: 'div',
+                            errorPlacement: function (error, element) {
+                                var placement = $(element).data('error');
+                                if (placement) {
+                                    $(placement).append(error)
+                                } else {
+                                    error.insertAfter(element);
+                                }
+                            }
+
+                        });
                     })
                     .on('click', '#contact-submit', function () {
                         // Do post.

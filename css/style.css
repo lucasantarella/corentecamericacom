@@ -90,4 +90,26 @@ p {
 .margin-bottom-5em {
   margin-bottom: 5em; }
 
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #fe1109;
+  box-shadow: 0 1px 0 0 #fe1109; }
+  .input-field input[type=text]:focus + label {
+    color: #fe1109; }
+
+.input-field input[type=email]:focus {
+  border-bottom: 1px solid #fe1109;
+  box-shadow: 0 1px 0 0 #fe1109; }
+  .input-field input[type=email]:focus + label {
+    color: #fe1109; }
+
+.input-field textarea[type=text]:focus {
+  border-bottom: 1px solid #fe1109;
+  box-shadow: 0 1px 0 0 #fe1109; }
+  .input-field textarea[type=text]:focus + label {
+    color: #fe1109; }
+
+form .error {
+  font-size: small;
+  color: #fe1109; }
+
 /*# sourceMappingURL=style.css.map */

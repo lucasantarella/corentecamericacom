@@ -51,7 +51,7 @@ of life through
 advancements in
 Orthopaedics</h5></div><div class="row center"><a class="waves-effect waves-light btn-large waves-red red" href="http://corentec.com/medical_pro.html">Get
 Started</a></div><!-- <div class="row center">--><!-- <a href="http://materializecss.com/getting-started.html" id="download-button"--><!-- class="btn-large waves-effect waves-light red lighten-1">Get Started</a>--><!-- </div>--></div></div><div class="parallax"><img class="image-blur" src="img/main1.jpg" alt="Unsplashed background img 2"></div></div><div class="container"><div class="section" id="section-contact"><div class="row"><div class="col s12 center"><div class="col s12 center-align"><h4>Contact Us</h4></div><div class="col s12 l8 offset-l2 center-align"><h5>Ask us about our products,
-business information, or job opportunities.</h5></div><div class="row left-align"><form class="col l8 offset-l2 m8 offset-m2 s12"><div class="row"><div class="input-field col s12"><input class="validate" id="contact-name" type="text"><label for="contact-name">Name</label></div></div><div class="row"><div class="input-field col s12"><input class="validate" id="email" type="email"><label for="email">Email</label></div></div><div class="row"><div class="input-field col s12"><textarea class="materialize-textarea" id="contact-message" type="text"></textarea><label for="contact-message">Message</label></div></div><div class="row"><div class="col s12 right-align"><button class="btn waves-effect waves-light red" id="contact-submit" type="button" name="contact-submit">Submit<i class="material-icons right">send</i></button></div></div></form></div></div></div></div></div><div class="modal" id="thankyou-modal"><div class="modal-content"><h4>Thanks!</h4><p>We'll be in touch soon.</p></div><div class="modal-footer"><a class="modal-action modal-close waves-effect waves-red btn-flat" href="#!">ok</a></div></div><footer class="page-footer grey darken-3"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">Company Bio</h5><p class="grey-text text-lighten-4">Corentec was established in order
+business information, or job opportunities.</h5></div><div class="row left-align"><form class="col l8 offset-l2 m8 offset-m2 s12 right-alert" id="contact-form"><div class="row"><div class="input-field col s12"><input class="validate" id="contact-name" type="text"><label for="contact-name">Name</label></div></div><div class="row"><div class="input-field col s12"><input class="validate" id="contact-email" type="email"><label for="contact-email">Email</label></div></div><div class="row"><div class="input-field col s12"><textarea class="validate materialize-textarea" id="contact-message" type="text"></textarea><label for="contact-message">Message</label></div></div><div class="row"><div class="col s12 right-align"><button class="btn waves-effect waves-light red" id="contact-submit" type="button" name="contact-submit">Submit<i class="material-icons right">send</i></button></div></div></form></div></div></div></div></div><div class="modal" id="thankyou-modal"><div class="modal-content"><h4>Thanks!</h4><p>We'll be in touch soon.</p></div><div class="modal-footer"><a class="modal-action modal-close waves-effect waves-red btn-flat" href="#!">ok</a></div></div><footer class="page-footer grey darken-3"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">Company Bio</h5><p class="grey-text text-lighten-4">Corentec was established in order
 for the patients to have an
 improved quality of life through
 the development of advanced medical
@@ -62,7 +62,7 @@ We, at Corentec, are striving for
 success beyond our position as the
 leader of artificial joints in both
 the United States and Korea.</p></div><div class="col l3 offset-l3 s12"><h5 class="white-text">Connect</h5><ul><li><a class="white-text" href="https://www.linkedin.com/company/corentec"><i class="fa fa-linkedin"></i>LinkedIn</a></li><li><a class="white-text" href="#section-contact"><i class="fa fa-envelope"></i>Email</a></li><br><br><li class="white-text"><p>60 Washington Street,<br>Ste. 202<br>Morristown, NJ 07960<br>(p) +1 862 777-8320<br>(f) +1 862 777-8319</p><!-- </div>--></li></ul></div></div></div><div class="footer-copyright"><div class="container">Made by<a class="red-text text-lighten-3" href="https://www.linkedin.com/in/lucasantarella">Luca
-Santarella</a></div></div></footer><!-- Scripts--><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script><script src="js/materialize.min.js"></script><script src="js/init.js"></script><script type="application/javascript">$(document)
+Santarella</a></div></div></footer><!-- Scripts--><script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js"></script><script src="js/materialize.min.js"></script><script src="js/init.js"></script><script type="application/javascript">$(document)
         .ready(function () {
             // Initialize
             $('.modal-trigger').leanModal();
@@ -71,6 +71,44 @@ Santarella</a></div></div></footer><!-- Scripts--><script src="https://ajax.goog
             // Side nav config
             $('.button-collapse').sideNav({});
             $('.collapsible').collapsible();
+            $('#contact-form').validate({
+                rules: {
+                    'contact-name': {
+                        required: true
+                    },
+                    'contact-email': {
+                        required: true,
+                        email: true
+                    },
+                    'contact-message': {
+                        required: true,
+                        minlength: 15
+                    }
+                },
+                messages: {
+                    'contact-name': {
+                        required: "Name is required!"
+                    },
+                    'contact-email': {
+                        required: "Email is required!",
+                        email: "Invalid email!"
+                    },
+                    'contact-message': {
+                        required: "Message is required!",
+                        minlength: "Message must be longer than 15 characters!"
+                    }
+                },
+                errorElement: 'div',
+                errorPlacement: function (error, element) {
+                    var placement = $(element).data('error');
+                    if (placement) {
+                        $(placement).append(error)
+                    } else {
+                        error.insertAfter(element);
+                    }
+                }
+
+            });
         })
         .on('click', '#contact-submit', function () {
             // Do post.
