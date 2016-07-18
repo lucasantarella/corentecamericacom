@@ -16,10 +16,6 @@ p {
     width: 100%; }
 
 @media only screen and (max-width: 992px) {
-  .parallax-container .section {
-    position: absolute;
-    top: 40%; }
-
   #index-banner .section {
     top: 10%;
     bottom: 10%; } }
@@ -47,6 +43,10 @@ p {
   -webkit-filter: blur(4px);
   filter: blur(4px); }
 
+.image-blur-less {
+  -webkit-filter: blur(2px);
+  filter: blur(2px); }
+
 #header-container {
   padding-top: 5em;
   padding-bottom: 5em; }
@@ -62,11 +62,32 @@ p {
     box-shadow: 0 10px 20px -7px #e0e0e0;
     transform: translate(0px, -5px); }
 
-#modals .modal-content .inline-right {
+.modal-product-image {
+  max-width: 100%; }
+
+#modals .modal-content .inline-right-30 {
   float: right;
   max-width: 30%; }
-#modals .modal-content .inline-left {
+#modals .modal-content .inline-right-40 {
+  float: right;
+  max-width: 40%; }
+#modals .modal-content .inline-right-50 {
+  float: right;
+  max-width: 50%; }
+#modals .modal-content .inline-left-30 {
   float: left;
   max-width: 30%; }
+#modals .modal-content .inline-left-40 {
+  float: left;
+  max-width: 40%; }
+#modals .modal-content .inline-left-50 {
+  float: left;
+  max-width: 50%; }
+
+.bold {
+  font-weight: bold; }
+
+.margin-bottom-5em {
+  margin-bottom: 5em; }
 
 /*# sourceMappingURL=style.css.map */
