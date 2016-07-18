@@ -111,41 +111,29 @@
             </p>
         </div>
         <div class="modal-footer">
-            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+            <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Close</a>
+            <a href="http://corentec.com/lospa_PR.html" class="modal-action waves-effect waves-red btn-flat">Read More</a>
         </div>
     </div>
     <div id="bencox-modal" class="modal">
         <div class="modal-content">
-            <h4>Lospa<sup>&reg;</sup> Knee System</h4>
-            <img src="img/lospaknee.png" class="modal-product-image inline-right"/>
-            <p class="light">
-                Corentec’s Lospa Knee System
-                for total knee replacement
-                is available in nine sizes,
-                each of which consists of
-                femoral and tibial components.
-                The femoral component features
-                a wide radius with a
-                posterior condyle thickness of
-                10 mm, balancing contact stress
-                with bone conservation. The
-                size of the anteroposterior
-                box of the femoral component
-                is comparable to other
-                commercially available products.
-                The single radius design of
-                the femoral component provides
-                ligament isometry and muscle
-                force efficiency. Its deep,
-                elongated and laterally-angled
-                patellar groove allows for
-                optimal patellar tracking. The
-                tibial component’s 3° posterior
-                slope helps prevent anterior
-                cortex impingement. The polyethylene
-                liner boasts a full peripheral
-                capture snap-fit locking mechanism.
-            </p>
+            <h4>Bencox<sup>&reg;</sup> Hip Systems</h4>
+            <div class="row">
+                <div class="col s12">
+                    <ul class="tabs">
+                        <li class="tab col s3"><a class="active" href="#bencox-modal-tab-1">M Stem</a></li>
+                        <li class="tab col s3"><a href="#test2">Mirabo Cup</a></li>
+                        <li class="tab col s3 "><a href="#test3">Disabled Tab</a></li>
+                        <li class="tab col s3"><a href="#test4">Test 4</a></li>
+                    </ul>
+                </div>
+                <div id="bencox-modal-tab-1" class="col s12">
+                    Testing 123
+                </div>
+                <div id="test2" class="col s12">Test 2</div>
+                <div id="test3" class="col s12">Test 3</div>
+                <div id="test4" class="col s12">Test 4</div>
+            </div>
         </div>
         <div class="modal-footer">
             <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
@@ -166,7 +154,7 @@
                     <a href="#bencox-modal" class="waves-effect waves-light modal-trigger">
                         <h2 class="center black-text product-family-header"><img src="img/bencox.png"></h2>
                     </a>
-                    <h5 class="center">Lorem ipsum dolor</h5>
+                    <h5 class="center">Bencox<sup>&reg;</sup> Hip Systems</h5>
                 </div>
             </div>
             <div class="col s12 m4">
@@ -180,7 +168,7 @@
             <div class="col s12 m4">
                 <div class="icon-block">
                     <h2 class="center black-text product-family-header"><img src="img/lospais.png"></h2>
-                    <h5 class="center">Lorem ipsum dolor</h5>
+                    <h5 class="center">Lospa IS<sup>&reg;</sup> Spine System</h5>
                 </div>
             </div>
         </div>
@@ -272,14 +260,20 @@
 <script src="js/materialize.min.js"></script>
 <script src="js/init.js"></script>
 <script type="application/javascript">
-    $('.button-collapse').sideNav({
-                closeOnClick: true
-            }
-    );
-    $('.collapsible').collapsible();
+    // Initialize
     $(document).ready(function () {
         $('.modal-trigger').leanModal();
+        $('ul.tabs').tabs({active: 0});
+
+        // Side nav config
+        $('.button-collapse').sideNav({
+            closeOnClick: true
+        });
+
+        $('.collapsible').collapsible();
     });
+
+    // Animate section links
     $(document).on('click', 'a[href^="#section-"]', function (e) {
         var id = $(this).attr('href');
         var $id = $(id);
