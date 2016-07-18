@@ -244,8 +244,8 @@ html(lang='en')
                     // </div>
             .parallax
                 img.image-blur(src='img/main1.jpg', alt='Unsplashed background img 2')
-        .container
-            #section-contact.section
+        #section-contact.container
+           .section
                 .row
                     .col.s12.center
                         .col.s12.center-align
@@ -333,6 +333,7 @@ html(lang='en')
         script(src='js/init.js')
         script(type='text/javascript', src='https://code.jquery.com/jquery-1.11.0.min.js')
         script(type='text/javascript', src='https://code.jquery.com/jquery-migrate-1.2.1.min.js')
+        script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js')
         script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/fancybox/1.3.4/jquery.fancybox-1.3.4.pack.min.js')
         script(type='text/javascript').
             $(function ($) {
@@ -406,7 +407,6 @@ html(lang='en')
                         // Do post.
                         $('#thankyou-modal').openModal();
                     })
-                    // Animate section links
                     .on('click', 'a[href^="#section-"]', function (e) {
                         var id = $(this).attr('href');
                         var $id = $(id);
@@ -415,5 +415,17 @@ html(lang='en')
                         }
                         e.preventDefault();
                         var pos = $(id).offset().top;
-                        $('body, html').animate({scrollTop: pos, easing: 'easeInOutQuint'}, 1500);
+                        $('body, html').animate({scrollTop: pos, easing: 'easeInOutQuint'}, 500);
                     });
+//                    .on('click', 'a[href^="#section-"]', function (e) {
+//                        if (this.hash !== "") {
+//                            event.preventDefault();
+//                            var hash = this.hash;
+//                            $('html, body').animate({
+//                                scrollTop: $(hash).offset().top
+//                            }, 800, function () {
+//                                window.location.hash = hash;
+//                            });
+//                        }
+//                    });
+//                     Animate section links
