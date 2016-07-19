@@ -47,3 +47,4 @@ fabric.properties
 
 node_modules/
 css/.sass-cache
+vendor/*
