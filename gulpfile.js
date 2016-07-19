@@ -10,6 +10,10 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     pug = require('gulp-pug'),
     bower = require('gulp-bower'),
+    gzip = require('gulp-gzip'),
+    tar = require('gulp-tar'),
+    args = require('yargs').argv,
+    gulpif = require('gulp-if'),
     minify = require('gulp-html-minifier');
 
 // Init dirs
@@ -35,10 +39,7 @@ gulp.task('sass', function () {
             outputStyle: "compressed"
         }))
         .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest(dirs.build + 'css'))
-        .pipe(notify({
-            message: "You just got super Sassy!"
-        }));
+        .pipe(gulp.dest(dirs.build + 'css'));
 });
 
 // JS task
@@ -50,10 +51,7 @@ gulp.task('js', function () {
         .pipe(gulp.dest(dirs.build + 'js'))
         .pipe(uglify())
         .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest(dirs.build + 'js'))
-        .pipe(notify({
-            message: "You're ugly!"
-        }));
+        .pipe(gulp.dest(dirs.build + 'js'));
 });
 
 // Vendor task
@@ -67,10 +65,7 @@ gulp.task('vendor', function () {
         .pipe(concat('vendor.min.js'))
         .pipe(uglify())
         .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest(dirs.build + 'vendor/'))
-        .pipe(notify({
-            message: "Vendors like haggling!"
-        }));
+        .pipe(gulp.dest(dirs.build + 'vendor/'));
 
     // // Vendor SASS
     // gulp
@@ -92,16 +87,10 @@ gulp.task('vendor', function () {
 gulp.task('assets', function () {
     gulp
         .src(dirs.src.img + '**/*.*')
-        .pipe(gulp.dest(dirs.build + 'img/'))
-        .pipe(notify({
-            message: "Image assets are liabilities!"
-        }));
+        .pipe(gulp.dest(dirs.build + 'img/'));
     gulp
         .src(dirs.src.fonts + '**/*.*')
-        .pipe(gulp.dest(dirs.build + 'fonts/'))
-        .pipe(notify({
-            message: "Font assets are liabilities!"
-        }));
+        .pipe(gulp.dest(dirs.build + 'fonts/'));
 });
 
 // Covert pug files
@@ -109,10 +98,7 @@ gulp.task('pug', function buildHTML() {
     return gulp
         .src(dirs.src.main + '*.pug')
         .pipe(pug())
-        .pipe(gulp.dest(dirs.build))
-        .pipe(notify({
-            message: "Pugs are cute!"
-        }));
+        .pipe(gulp.dest(dirs.build));
 });
 
 // ... and then Minify all html
@@ -120,10 +106,7 @@ gulp.task('minify', ['pug'], function () {
     return gulp
         .src(dirs.src.main + '*.html')
         .pipe(minify({collapseWhitespace: true, minifyCSS: true, minifyJS: true, removeEmptyAttributes: true}))
-        .pipe(gulp.dest(dirs.build))
-        .pipe(notify({
-            message: "Mini Mouse!"
-        }));
+        .pipe(gulp.dest(dirs.build));
 });
 
 // Install all bower components
@@ -131,8 +114,23 @@ gulp.task('bower', function () {
     gulp
         .src(dirs.src.main + 'bower.json')
         .pipe(gulp.dest(dirs.build));
-    return bower({cmd: 'update', directory: 'bower_components', cwd: dirs.build});
+    bower({cmd: 'update', directory: 'bower_components', cwd: dirs.build});
 });
 
 // Build task
 gulp.task('build', ['sass', 'js', 'vendor', 'pug', 'minify', 'assets', 'bower']);
+
+// Release task
+gulp.task('release', ['build'], function () {
+    if (args.name !== 'undefined') {
+        gulp.src(dirs.build + '*')
+            .pipe(tar(args.name + '.tar'))
+            .pipe(gzip())
+            .pipe(gulp.dest('.'));
+    } else {
+        gulp.src(dirs.build + '*')
+            .pipe(tar('release.tar'))
+            .pipe(gzip())
+            .pipe(gulp.dest('.'));
+    }
+});
