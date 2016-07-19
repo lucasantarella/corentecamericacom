@@ -245,7 +245,7 @@ html(lang='en')
             .parallax
                 img.image-blur(src='img/main1.jpg', alt='Unsplashed background img 2')
         #section-contact.container
-           .section
+            .section
                 .row
                     .col.s12.center
                         .col.s12.center-align
@@ -307,10 +307,18 @@ html(lang='en')
                                     | 60 Washington Street, Ste. 202
                                     br
                                     | Morristown, NJ 07960
+
                                     br
-                                    | (p) +1 862 777-8320
+                                    | (
+                                    span.footer-phone
+                                        | p
+                                    | )&nbsp;&nbsp;+1 862 777-8320
                                     br
-                                    | (f) +1 862 777-8319
+                                    | (
+                                    span.footer-phone
+                                        | f
+                                    | )&nbsp;&nbsp;+1 862 777-8319
+
                                 // </div>
             .footer-copyright
                 .container
