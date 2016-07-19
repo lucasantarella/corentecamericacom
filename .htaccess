@@ -1,0 +1,5 @@
+<IfModule mod_rewrite.c>
+	RewriteEngine on
+	RewriteRule  ^$ build/    [L]
+	RewriteRule  (.*) build/$1 [L]
+</IfModule>

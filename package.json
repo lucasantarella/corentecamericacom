@@ -1,13 +1,27 @@
-
 {
-  "name":"livereload-example",
-  "version":"1.0.0",
-  "dependencies":{},
-  "devDependencies":{
-    "matchdep": "~0.1.1",
+  "name": "livereload-example",
+  "version": "1.0.0",
+  "dependencies": {},
+  "devDependencies": {
     "grunt": "~0.4.0",
+    "grunt-contrib-connect": "0.1.2",
+    "grunt-contrib-livereload": "0.1.1",
     "grunt-regarde": "~0.1.1",
-    "grunt-contrib-connect":  "0.1.2",
-    "grunt-contrib-livereload": "0.1.1"
+    "gulp": "^3.9.1",
+    "gulp-bower-src": "^0.1.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-html-minifier": "^0.1.8",
+    "gulp-notify": "^2.2.0",
+    "gulp-pug": "^3.0.3",
+    "gulp-rename": "^1.2.2",
+    "gulp-ruby-sass": "^2.0.6",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.4",
+    "gulp-util": "^3.0.7",
+    "gulp-watch": "^4.3.8",
+    "html-minifier": "^3.0.1",
+    "matchdep": "~0.1.1",
+    "gulp-bower": "latest"
   }
 }
