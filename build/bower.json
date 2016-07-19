@@ -1,0 +1,21 @@
+{
+  "name": "Corentec America",
+  "homepage": "https://github.com/lucasantarella/corentecamericacom",
+  "authors": [
+    "Luca Santarella <luca.santarella@gmail.com>"
+  ],
+  "description": "",
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "^4.6.3"
+  }
+}
