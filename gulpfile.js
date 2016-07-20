@@ -47,6 +47,19 @@ gulp.task('sass', function () {
             noCache: true,
             outputStyle: "compressed"
         }))
+        .pipe(flatten())
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest(dirs.build + 'css'));
+});
+
+
+
+// Watch CSS task
+gulp.task('css', ['sass'], function () {
+    gulp
+        .src(dirs.build + 'css/**/*.css')
+        .pipe(sourcemaps.init())
+        .pipe(concat("style.min.css"))
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(dirs.build + 'css'));
 });
@@ -143,22 +156,23 @@ gulp.task('bower', function () {
 });
 
 // Build task
-gulp.task('build', ['sass', 'js', 'vendor', 'pug', 'minify', 'assets', 'bower']);
+gulp.task('build', ['css', 'js', 'vendor', 'pug', 'minify', 'assets', 'bower']);
 
 // Release task
 gulp.task('release', ['build'], function () {
     if (args.name !== 'undefined') {
-        gulp.src(dirs.build + '*')
+        gulp.src(dirs.build + '**/*')
             .pipe(tar(args.name + '.tar'))
             .pipe(gzip())
             .pipe(gulp.dest('.'));
     } else {
-        gulp.src(dirs.build + '*')
+        gulp.src(dirs.build + '**/*')
             .pipe(tar('release.tar'))
             .pipe(gzip())
             .pipe(gulp.dest('.'));
     }
 });
+
 
 /*
  *
