@@ -120,7 +120,11 @@ gulp.task('vendor-js', function () {
 });
 
 // Copy assets
-gulp.task('assets', ['img-assets', 'font-assets']);
+gulp.task('assets', ['img-assets', 'font-assets'], function () {
+    return gulp.src(dirs.src.main + 'bower.json')
+        .pipe(gulp.dest(dirs.build))
+});
+
 gulp.task('img-assets', function () {
     return gulp
         .src(dirs.src.img + '**/*.*')
@@ -150,10 +154,7 @@ gulp.task('minify', ['pug'], function () {
 
 // Install all bower components
 gulp.task('bower', function () {
-    return gulp
-        .src(dirs.src.main + 'bower.json')
-        .pipe(gulp.dest(dirs.build))
-        .pipe(bower({cmd: 'update', directory: 'bower_components', cwd: dirs.build}));
+    return bower({cmd: 'install', directory: 'bower_components', cwd: dirs.build});
 });
 
 // Clean the build directory
@@ -168,7 +169,7 @@ gulp.task('default', function () {
     return runSequence('build');
 })
 gulp.task('build', function () {
-    return runSequence('clean', ['js', 'pug', 'assets', 'bower','sass','vendor-sass','vendor-js'], ['minify','css','vendor-css']);
+    return runSequence('clean', ['assets'], ['js', 'pug', 'bower', 'sass', 'vendor-sass', 'vendor-js'], ['minify', 'css', 'vendor-css']);
 });
 
 // Release task
