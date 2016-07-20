@@ -19,9 +19,11 @@ p {
   #index-banner .section {
     top: 10%;
     bottom: 10%; } }
+
 @media only screen and (max-width: 600px) {
   #index-banner .section {
     top: 0; } }
+
 .icon-block {
   padding: 0 15px; }
   .icon-block .material-icons {
@@ -68,18 +70,23 @@ p {
 #modals .modal-content .inline-right-30 {
   float: right;
   max-width: 30%; }
+
 #modals .modal-content .inline-right-40 {
   float: right;
   max-width: 40%; }
+
 #modals .modal-content .inline-right-50 {
   float: right;
   max-width: 50%; }
+
 #modals .modal-content .inline-left-30 {
   float: left;
   max-width: 30%; }
+
 #modals .modal-content .inline-left-40 {
   float: left;
   max-width: 40%; }
+
 #modals .modal-content .inline-left-50 {
   float: left;
   max-width: 50%; }

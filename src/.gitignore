@@ -1,0 +1,9 @@
+css/**/*.css
+css/**/*.css.map
+*.html
+vendor/vendor.min.css
+vendor/vendor.min.css.map
+vendor/vendor.min.js
+vendor/vendor.min.js.map
+js/scripts.min.js
+js/scripts.min.js.map
