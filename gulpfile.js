@@ -166,8 +166,11 @@ gulp.task('release', ['build'], function () {
  *
  */
 
-// Default watch
-gulp.task('default', function () {
+// Default
+gulp.task('default', ['watch-vendor-css', 'watch-css', 'watch-js', 'watch-vendor-js', 'watch-pug']);
+
+// Watch
+gulp.task('watch', function () {
     gulp.watch(dirs.src.vendor + "**/*.{sass,scss,css}", ['watch-vendor-css']);
     gulp.watch(dirs.src.vendor + "**/*.js", ['watch-vendor-js']);
     gulp.watch(dirs.src.css + "**/*.{sass,scss,css}", ['watch-css']);
