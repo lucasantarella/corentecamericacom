@@ -17,6 +17,8 @@ var gulp = require('gulp'),
     duration = require('gulp-duration'),
     size = require('gulp-size'),
     flatten = require('gulp-flatten'),
+    clean = require('gulp-clean'),
+    runSequence = require('run-sequence'),
     minify = require('gulp-html-minifier');
 
 // Init dirs
@@ -51,7 +53,6 @@ gulp.task('sass', function () {
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(dirs.build + 'css'));
 });
-
 
 
 // Watch CSS task
@@ -155,8 +156,20 @@ gulp.task('bower', function () {
         .pipe(bower({cmd: 'update', directory: 'bower_components', cwd: dirs.build}));
 });
 
+// Clean the build directory
+gulp.task('clean', function () {
+    return gulp
+        .src(dirs.build, {read: false})
+        .pipe(clean({force: true}));
+});
+
 // Build task
-gulp.task('build', ['css', 'js', 'vendor', 'pug', 'minify', 'assets', 'bower']);
+gulp.task('default', function () {
+    return runSequence('build');
+})
+gulp.task('build', function () {
+    return runSequence('clean', ['js', 'pug', 'assets', 'bower','sass','vendor-sass','vendor-js'], ['minify','css','vendor-css']);
+});
 
 // Release task
 gulp.task('release', ['build'], function () {
@@ -181,7 +194,7 @@ gulp.task('release', ['build'], function () {
  */
 
 // Default
-gulp.task('default', ['watch-vendor-css', 'watch-css', 'watch-js', 'watch-vendor-js', 'watch-pug']);
+gulp.task('sources', ['watch-vendor-css', 'watch-css', 'watch-js', 'watch-vendor-js', 'watch-pug']);
 
 // Watch
 gulp.task('watch', function () {
