@@ -3,7 +3,7 @@ html(lang='en')
     head
         meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
         meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no')
-        title Corentec America, Inc.
+        title(itemprop='name') Corentec America, Inc.
 
         // SEO Meta
         meta(name='description', content='Corentec designs, manufactures, and markets a full line of Orthopedic Implants focusing on the Hip, Knee and Spine Implant markets.')
@@ -14,28 +14,30 @@ html(lang='en')
         meta(name='twitter:card', content='summary')
         meta(property='twitter:url', content='https://www.corentecamerica.com/')
         meta(property='twitter:image', content='https://www.corentecamercia.com/img/apple-touch-icon-120x120.png')
+        meta(itemscope='Organization')
+
 
         // Favicon
-        link(rel='apple-touch-icon', sizes='57x57', href='img/apple-touch-icon-57x57.png ')
-        link(rel='apple-touch-icon', sizes='60x60', href='img/apple-touch-icon-60x60.png ')
-        link(rel='apple-touch-icon', sizes='72x72', href='img/apple-touch-icon-72x72.png ')
-        link(rel='apple-touch-icon', sizes='76x76', href='img/apple-touch-icon-76x76.png ')
-        link(rel='apple-touch-icon', sizes='114x114', href='img/apple-touch-icon-114x114.png ')
-        link(rel='apple-touch-icon', sizes='120x120', href='img/apple-touch-icon-120x120.png ')
-        link(rel='apple-touch-icon', sizes='144x144', href='img/apple-touch-icon-144x144.png ')
-        link(rel='apple-touch-icon', sizes='152x152', href='img/apple-touch-icon-152x152.png ')
-        link(rel='apple-touch-icon', sizes='180x180', href='img/apple-touch-icon-180x180.png ')
-        link(rel='icon', type='image/png', href='img/favicon-32x32.png ', sizes='32x32')
-        link(rel='icon', type='image/png', href='img/favicon-194x194.png ', sizes='194x194')
-        link(rel='icon', type='image/png', href='img/favicon-96x96.png ', sizes='96x96')
-        link(rel='icon', type='image/png', href='img/android-chrome-192x192.png ', sizes='192x192')
-        link(rel='icon', type='image/png', href='img/favicon-16x16.png ', sizes='16x16')
-        link(rel='manifest', href='img/manifest.json ')
-        link(rel='mask-icon', href='img/safari-pinned-tab.svg ', color='#fe1109')
-        link(rel='shortcut icon', href='img/favicon.ico ')
+        link(rel='apple-touch-icon', sizes='57x57', href='img/apple-touch-icon-57x57.png')
+        link(rel='apple-touch-icon', sizes='60x60', href='img/apple-touch-icon-60x60.png')
+        link(rel='apple-touch-icon', sizes='72x72', href='img/apple-touch-icon-72x72.png')
+        link(rel='apple-touch-icon', sizes='76x76', href='img/apple-touch-icon-76x76.png')
+        link(rel='apple-touch-icon', sizes='114x114', href='img/apple-touch-icon-114x114.png')
+        link(rel='apple-touch-icon', sizes='120x120', href='img/apple-touch-icon-120x120.png')
+        link(rel='apple-touch-icon', sizes='144x144', href='img/apple-touch-icon-144x144.png')
+        link(rel='apple-touch-icon', sizes='152x152', href='img/apple-touch-icon-152x152.png')
+        link(rel='apple-touch-icon', sizes='180x180', href='img/apple-touch-icon-180x180.png', itemprop='image')
+        link(rel='icon', type='image/png', href='img/favicon-32x32.png', sizes='32x32')
+        link(rel='icon', type='image/png', href='img/favicon-194x194.png', sizes='194x194')
+        link(rel='icon', type='image/png', href='img/favicon-96x96.png', sizes='96x96')
+        link(rel='icon', type='image/png', href='img/android-chrome-192x192.png', sizes='192x192')
+        link(rel='icon', type='image/png', href='img/favicon-16x16.png', sizes='16x16')
+        link(rel='manifest', href='img/manifest.json')
+        link(rel='mask-icon', href='img/safari-pinned-tab.svg', color='#fe1109')
+        link(rel='shortcut icon', href='img/favicon.ico')
         meta(name='msapplication-TileColor', content='#191919')
-        meta(name='msapplication-TileImage', content=' img/mstile-144x144.png ')
-        meta(name='msapplication-config', content=' img/browserconfig.xml ')
+        meta(name='msapplication-TileImage', content=' img/mstile-144x144.png')
+        meta(name='msapplication-config', content=' img/browserconfig.xml')
         meta(name='theme-color', content='#ffffff')
 
         // CSS
@@ -295,7 +297,7 @@ html(lang='en')
                     .col.l6.s12
                         h5.white-text
                             img#footer-logo(src='img/corenteclogo.png')
-                        p.grey-text.text-lighten-4
+                        p.grey-text.text-lighten-4(itemprop='description')
                             | Corentec designs, manufactures, and markets a full line of Orthopedic Implants focusing on the Hip, Knee and Spine Implant markets. Corentec is committed to Innovation, Product Excellence and Total Customer Satisfaction. Our focus on these core values is fundamental to our company's mission to contribute to a healthy and active society
                             span(style='font-weight:bold;font-size:1.1em') &nbsp;- Get&nbsp;Moving&nbsp;with&nbsp;Corentec.
                     .col.l3.offset-l3.s12
