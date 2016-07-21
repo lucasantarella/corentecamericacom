@@ -77,7 +77,9 @@ $.noConflict();</script><script type="application/javascript">$(document)
             $('ul.tabs').tabs({active: 0});
 
             // Side nav config
-            $('.button-collapse').sideNav({});
+            $('.button-collapse').sideNav({
+                closeOnClick: true
+            });
             $('.collapsible').collapsible();
             $('#contact-form').validate({
                 rules: {
