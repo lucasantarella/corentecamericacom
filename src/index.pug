@@ -291,10 +291,11 @@ html(lang='en')
                 p We'll be in touch soon.
             .modal-footer
                 a.modal-action.modal-close.waves-effect.waves-red.btn-flat(href='#!') ok
-        footer.page-footer.grey.darken-3
+        footer.page-footer.grey.darken-3(itemscope, itemtype='http://schema.org/WebSite')
             .container
                 .row
                     .col.l6.s12
+                        span(style='display:none;') Corentec America, Inc
                         h5.white-text
                             img#footer-logo(src='img/corenteclogo.png')
                         p.grey-text.text-lighten-4(itemprop='description')
@@ -337,7 +338,7 @@ html(lang='en')
                 .container
                     | Made by&nbsp;
                     a.red-text.text-lighten-3(href='https://www.linkedin.com/in/lucasantarella')
-                        | Luca Santarella
+                        span(itemprop='creator') Luca Santarella
                     | . Find me on&nbsp;
                     a.red-text.text-lighten-3(href='https://github.com/lucasantarella')
                         | Github
