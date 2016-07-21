@@ -17,6 +17,8 @@ var gulp = require('gulp'),
     duration = require('gulp-duration'),
     size = require('gulp-size'),
     flatten = require('gulp-flatten'),
+    clean = require('gulp-clean'),
+    runSequence = require('run-sequence'),
     minify = require('gulp-html-minifier');
 
 // Init dirs
@@ -51,7 +53,6 @@ gulp.task('sass', function () {
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(dirs.build + 'css'));
 });
-
 
 
 // Watch CSS task
@@ -119,7 +120,11 @@ gulp.task('vendor-js', function () {
 });
 
 // Copy assets
-gulp.task('assets', ['img-assets', 'font-assets']);
+gulp.task('assets', ['img-assets', 'font-assets'], function () {
+    return gulp.src(dirs.src.main + 'bower.json')
+        .pipe(gulp.dest(dirs.build))
+});
+
 gulp.task('img-assets', function () {
     return gulp
         .src(dirs.src.img + '**/*.*')
@@ -149,14 +154,23 @@ gulp.task('minify', ['pug'], function () {
 
 // Install all bower components
 gulp.task('bower', function () {
+    return bower({cmd: 'install', directory: 'bower_components', cwd: dirs.build});
+});
+
+// Clean the build directory
+gulp.task('clean', function () {
     return gulp
-        .src(dirs.src.main + 'bower.json')
-        .pipe(gulp.dest(dirs.build))
-        .pipe(bower({cmd: 'update', directory: 'bower_components', cwd: dirs.build}));
+        .src(dirs.build, {read: false})
+        .pipe(clean({force: true}));
 });
 
 // Build task
-gulp.task('build', ['css', 'js', 'vendor', 'pug', 'minify', 'assets', 'bower']);
+gulp.task('default', function () {
+    return runSequence('build');
+})
+gulp.task('build', function () {
+    return runSequence('clean', ['assets'], ['js', 'pug', 'bower', 'sass', 'vendor-sass', 'vendor-js'], ['minify', 'css', 'vendor-css']);
+});
 
 // Release task
 gulp.task('release', ['build'], function () {
@@ -173,96 +187,11 @@ gulp.task('release', ['build'], function () {
     }
 });
 
-
-/*
- *
- *  Watch Tasks
- *
- */
-
-// Default
-gulp.task('default', ['watch-vendor-css', 'watch-css', 'watch-js', 'watch-vendor-js', 'watch-pug']);
-
-// Watch
+// Watch task
 gulp.task('watch', function () {
-    gulp.watch(dirs.src.vendor + "**/*.{sass,scss,css}", ['watch-vendor-css']);
-    gulp.watch(dirs.src.vendor + "**/*.js", ['watch-vendor-js']);
-    gulp.watch(dirs.src.css + "**/*.{sass,scss,css}", ['watch-css']);
-    gulp.watch(dirs.src.js + "**/*.js", ['watch-js']);
-    gulp.watch(dirs.src.main + "*.pug", ['watch-pug']);
-});
-
-// Watch Vendor Sass task
-gulp.task('watch-vendor-sass', function () {
-    return gulp
-        .src(dirs.src.vendor + '**/*.{sass,scss}')
-        .pipe(sourcemaps.init())
-        .pipe(sass({}))
-        .pipe(flatten())
-        .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest(dirs.src.vendor));
-});
-
-// Watch Vendor CSS task
-gulp.task('watch-vendor-css', ['watch-vendor-sass'], function () {
-    gulp
-        .src(dirs.src.vendor + '**/*.css')
-        .pipe(sourcemaps.init())
-        .pipe(concat("vendor.min.css"))
-        .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest(dirs.src.vendor));
-});
-
-
-// Watch Sass task
-gulp.task('watch-sass', function () {
-    gulp
-        .src(dirs.src.css + '**/*.{sass,scss}')
-        .pipe(sourcemaps.init())
-        .pipe(sass({}))
-        .pipe(flatten())
-        .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest(dirs.src.css));
-});
-
-// Watch CSS task
-gulp.task('watch-css', ['watch-sass'], function () {
-    gulp
-        .src(dirs.src.css + '**/*.css')
-        .pipe(sourcemaps.init())
-        .pipe(concat("style.min.css"))
-        .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest(dirs.src.css));
-});
-
-// Watch JS task
-gulp.task('watch-js', function () {
-    return gulp
-        .src(dirs.src.js + "**/*.js")
-        .pipe(sourcemaps.init())
-        .pipe(concat('scripts.min.js'))
-        .pipe(gulp.dest(dirs.build + 'js'))
-        // .pipe(uglify())
-        .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest(dirs.src.js));
-});
-
-// Watch Vendor JS
-gulp.task('watch-vendor-js', function () {
-    gulp
-        .src(dirs.src.vendor + "**/*.js")
-        .pipe(sourcemaps.init())
-        .pipe(concat('vendor.min.js'))
-        .pipe(uglify())
-        .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest(dirs.src.vendor));
-});
-
-
-// Covert pug files
-gulp.task('watch-pug', function () {
-    return gulp
-        .src(dirs.src.main + '*.pug')
-        .pipe(pug())
-        .pipe(gulp.dest(dirs.src.main));
+    gulp.watch(dirs.src.vendor + "**/*.{sass,scss,css}", ['vendor-css']);
+    gulp.watch(dirs.src.vendor + "**/*.js", ['vendor-js']);
+    gulp.watch(dirs.src.css + "**/*.{sass,scss,css}", ['css']);
+    gulp.watch(dirs.src.js + "**/*.js", ['js']);
+    gulp.watch(dirs.src.main + "*.pug", ['pug']);
 });

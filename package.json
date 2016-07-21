@@ -10,6 +10,7 @@
     "gulp": "^3.9.1",
     "gulp-bower": "latest",
     "gulp-bower-src": "^0.1.0",
+    "gulp-clean": "^0.3.2",
     "gulp-concat": "^2.6.0",
     "gulp-duration": "0.0.0",
     "gulp-flatten": "^0.3.0",
@@ -29,6 +30,7 @@
     "gulp-watch": "^4.3.8",
     "html-minifier": "^3.0.1",
     "matchdep": "~0.1.1",
+    "run-sequence": "^1.2.2",
     "yargs": "latest"
   }
 }

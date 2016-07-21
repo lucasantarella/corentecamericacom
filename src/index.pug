@@ -189,10 +189,10 @@ html(lang='en')
         .container.section-container-dropshadow
             #section-products.section
                 .row
-                    .col.l12.center
+                    .col.s12.center
                         h3 Our Products
                 #product-family.row
-                    .col.s12.m4
+                    .col.s12.m4.center
                         .icon-block
                             a.waves-effect.waves-light.modal-trigger(href='#bencox-modal')
                                 h2.center.black-text.product-family-header
@@ -201,7 +201,7 @@ html(lang='en')
                                 | Bencox
                                 sup &reg;
                                 | Hip Systems
-                    .col.s12.m4
+                    .col.s12.m4.center
                         .icon-block
                             a.waves-effect.waves-light.modal-trigger(href='#lospa-modal')
                                 h2.center.black-text.product-family-header
@@ -210,7 +210,7 @@ html(lang='en')
                                 | Lospa
                                 sup &reg;
                                 | Knee System
-                    .col.s12.m4
+                    .col.s12.m4.center
                         .icon-block
                             a.waves-effect.waves-light.modal-trigger(href='#lospais-modal')
                                 h2.center.black-text.product-family-header
@@ -249,7 +249,7 @@ html(lang='en')
                 .row
                     .col.s12.center
                         .col.s12.center-align
-                            h4 Contact Us
+                            h3 Contact Us
                         .col.s12.l8.offset-l2.center-align
                             h5
                                 | Ask us about our products,
@@ -287,7 +287,7 @@ html(lang='en')
                             img#footer-logo(src='img/corenteclogo.png')
                         p.grey-text.text-lighten-4
                             | Corentec designs, manufactures, and markets a full line of Orthopedic Implants focusing on the Hip, Knee and Spine Implant markets. Corentec is committed to Innovation, Product Excellence and Total Customer Satisfaction. Our focus on these core values is fundamental to our company's mission to contribute to a healthy and active society
-                            span(style='font-weight:bold;font-size:1.1em') &nbsp;- Get Moving with Corentec.
+                            span(style='font-weight:bold;font-size:1.1em') &nbsp;- Get&nbsp;Moving&nbsp;with&nbsp;Corentec.
                     .col.l3.offset-l3.s12
                         h5.white-text Connect
                         ul
@@ -326,6 +326,10 @@ html(lang='en')
                     | Made by&nbsp;
                     a.red-text.text-lighten-3(href='https://www.linkedin.com/in/lucasantarella')
                         | Luca Santarella
+                    | . Find me on&nbsp;
+                    a.red-text.text-lighten-3(href='https://github.com/lucasantarella')
+                        | Github
+                    | .
         // Scripts
         script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js')
         script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.min.js')
@@ -362,7 +366,9 @@ html(lang='en')
                         $('ul.tabs').tabs({active: 0});
 
                         // Side nav config
-                        $('.button-collapse').sideNav({});
+                        $('.side-nav').sideNav({
+                            closeOnClick: true
+                        });
                         $('.collapsible').collapsible();
                         $('#contact-form').validate({
                             rules: {
